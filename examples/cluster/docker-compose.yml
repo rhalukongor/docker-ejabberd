@@ -1,0 +1,36 @@
+first:
+    image: ejabberd:test
+    privileged: true
+    hostname: first
+    domainname: foo.com
+    ports:
+        - 5222:5222
+        - 5280:5280
+    environment:
+        - EJABBERD_ADMIN=admin@foo.com
+        - EJABBERD_ADMIN_PWD=testPassword
+        - XMPP_DOMAIN=foo.com
+        - ERLANG_NODE=ejabberd@first
+        - ERLANG_COOKIE=testCluster
+second:
+    image: ejabberd:test
+    privileged: true
+    hostname: second
+    domainname: foo.com
+    links:
+        - first
+    environment:
+        - XMPP_DOMAIN=foo.com
+        - ERLANG_NODE=ejabberd@second
+        - ERLANG_COOKIE=testCluster
+third:
+    image: ejabberd:test
+    privileged: true
+    hostname: third
+    domainname: foo.com
+    links:
+        - first
+    environment:
+        - XMPP_DOMAIN=foo.com
+        - ERLANG_NODE=ejabberd@third
+        - ERLANG_COOKIE=testCluster

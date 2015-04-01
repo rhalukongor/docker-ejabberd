@@ -28,6 +28,9 @@ RUN apt-get update \
         ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+# Workarround cluster setup
+RUN ln -s /tmp /home/cean
+
 # Install as user
 USER $EJABBERD_USER
 
@@ -63,7 +66,7 @@ ADD ./scripts $EJABBERD_ROOT/bin/scripts
 WORKDIR $EJABBERD_ROOT
 
 VOLUME ["$EJABBERD_ROOT/database", "$EJABBERD_ROOT/ssl"]
-EXPOSE 5222 5269 5280 4560
+EXPOSE 4369 4560 5222 5269 5280
 
 CMD ["start"]
 ENTRYPOINT ["run"]
