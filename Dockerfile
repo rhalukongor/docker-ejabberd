@@ -28,9 +28,6 @@ RUN apt-get update \
         ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Workarround cluster setup
-RUN ln -s /tmp /home/cean
-
 # Install as user
 USER $EJABBERD_USER
 

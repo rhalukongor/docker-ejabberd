@@ -1,6 +1,6 @@
 # Docker Ejabberd Cluster Sample
 
-Actually add a node to the cluster does not work like expected.
+Sample two node cluster with docker-compose.
 
 # Build test image from this branch
 

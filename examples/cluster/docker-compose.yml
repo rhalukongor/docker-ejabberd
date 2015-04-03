@@ -12,6 +12,7 @@ first:
         - XMPP_DOMAIN=foo.com
         - ERLANG_NODE=ejabberd@first
         - ERLANG_COOKIE=testCluster
+
 second:
     image: ejabberd:test
     privileged: true
@@ -20,17 +21,7 @@ second:
     links:
         - first
     environment:
+        - EJABBERD_MASTER_NODE=ejabberd@first
         - XMPP_DOMAIN=foo.com
         - ERLANG_NODE=ejabberd@second
-        - ERLANG_COOKIE=testCluster
-third:
-    image: ejabberd:test
-    privileged: true
-    hostname: third
-    domainname: foo.com
-    links:
-        - first
-    environment:
-        - XMPP_DOMAIN=foo.com
-        - ERLANG_NODE=ejabberd@third
         - ERLANG_COOKIE=testCluster
